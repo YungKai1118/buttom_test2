@@ -29,7 +29,9 @@
 
 class Main extends egret.DisplayObjectContainer {
     
-    private background:egret.Sprite
+    private b:egret.Shape ; a:egret.Shape;
+    
+    private shp:egret.Shape
 
     public constructor() {
         super();
@@ -37,19 +39,45 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private onAddToStage(event: egret.Event) {
-        egret.log("AA");
-    
-        let a: egret.Shape = new egret.Shape();
-        a.graphics.beginFill(0x5000ff);
-        a.graphics.drawCircle(100,200,50);
-        a.graphics.endFill();
-        this.addChild(a);
-        
-        this.background = null;
+        egret.log("print two spot");
 
-        egret.log("AAA");
+        this.a = new egret.Shape();
+        this.a.graphics.beginFill(0x5000ff);
+        this.a.graphics.drawCircle(100,200,50);
+        this.a.graphics.endFill();
+        this.addChild(this.a);
+        this.a.touchEnabled = true;
+        this.a.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCLickButton,this)
+
+
+        this.b = new egret.Shape();
+        this.b.graphics.beginFill(0xff0000);
+        this.b.graphics.drawCircle(100,400,50);
+        this.b.graphics.endFill();
+        this.addChild(this.b);
+
+        this.shp = new egret.Shape();
+        this.shp.graphics.beginFill(0x0000ff);
+        this.shp.graphics.drawRect(0,0,50,50);
+        this.shp.graphics.endFill();
+        this.addChild(this.shp);
+        
+        this.stage.frameRate=1;
+        this.addEventListener(egret.Event.ENTER_FRAME,this.move,this)
     }
     
+    private onCLickButton() : void{
+        this.b.x += 10;
+        egret.log("click");
+    }
+
+    private ang:number=0 ; r:number =50;
+    private move(evt:egret.Event){
+        this.shp.x= 50+ Math.cos(this.ang*Math.PI/180)*this.r;// 三角函數吃徑度
+        this.shp.y= 50+ Math.sin(this.ang*Math.PI/180)*this.r;
+        
+        this.ang += 6;
+    }
+
+
 }
-
-
