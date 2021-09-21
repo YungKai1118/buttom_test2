@@ -62,9 +62,12 @@ class Main extends egret.DisplayObjectContainer {
         this.shp.graphics.endFill();
         this.addChild(this.shp);
         
-        this.stage.frameRate=1;
+        this.stage.frameRate=30;
         this.addEventListener(egret.Event.ENTER_FRAME,this.move,this)
-    }
+   
+
+
+ }
     
     private onCLickButton() : void{
         this.b.x += 10;
@@ -76,7 +79,7 @@ class Main extends egret.DisplayObjectContainer {
         this.shp.x= 50+ Math.cos(this.ang*Math.PI/180)*this.r;// 三角函數吃徑度
         this.shp.y= 50+ Math.sin(this.ang*Math.PI/180)*this.r;
         
-        this.ang += 6;
+        this.ang += 1;
     }
 
 
