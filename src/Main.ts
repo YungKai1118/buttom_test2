@@ -36,6 +36,16 @@ class Main extends egret.DisplayObjectContainer {
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+
+        //20210921_egret 書籍自學
+        var shape1:egret.Shape=new egret.Shape();
+        shape1.graphics.beginFill(0xFF0000);
+        shape1.graphics.drawRect(0,0,100,100);
+        shape1.graphics.endFill();
+        this.addChild(shape1);
+        shape1.touchEnabled=true;
+        shape1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this)
+
     }
 
     private onAddToStage(event: egret.Event) {
@@ -82,5 +92,14 @@ class Main extends egret.DisplayObjectContainer {
         this.ang += 1;
     }
 
+    private touchHandler(event:egret.TouchEvent):void{
+        console.log("事件類型:"+event.type);
+        console.log("事件對象:"+event);
 
+        console.log(this);
+        //移除 listener 使按鍵使用一次即不可再發生事件
+        var shpae1:egret.Shape=<egret.Shape>event.target;
+        shpae1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this);
+
+    }
 }
