@@ -44,7 +44,7 @@ class Main extends egret.DisplayObjectContainer {
         shape1.graphics.endFill();
         this.addChild(shape1);
         shape1.touchEnabled=true;
-        shape1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this)
+        shape1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this);
 
     }
 
@@ -57,8 +57,7 @@ class Main extends egret.DisplayObjectContainer {
         this.a.graphics.endFill();
         this.addChild(this.a);
         this.a.touchEnabled = true;
-        this.a.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCLickButton,this)
-
+        this.a.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCLickButton,this);
 
         this.b = new egret.Shape();
         this.b.graphics.beginFill(0xff0000);
@@ -74,8 +73,6 @@ class Main extends egret.DisplayObjectContainer {
         
         this.stage.frameRate=30;
         this.addEventListener(egret.Event.ENTER_FRAME,this.move,this)
-   
-
 
  }
     
@@ -95,11 +92,10 @@ class Main extends egret.DisplayObjectContainer {
     private touchHandler(event:egret.TouchEvent):void{
         console.log("事件類型:"+event.type);
         console.log("事件對象:"+event);
-
-        console.log(this);
+        
         //移除 listener 使按鍵使用一次即不可再發生事件
-        var shpae1:egret.Shape=<egret.Shape>event.target;
-        shpae1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this);
+        var shppp1:egret.Shape=<egret.Shape>event.target;
+        // shppp1.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this);
 
     }
 }
